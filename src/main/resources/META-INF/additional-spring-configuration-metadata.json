@@ -1,8 +1,24 @@
 {
   "properties": [
     {
-      "name": "value.page.size",
-      "type": "java.lang.Integer",
-      "description": "Description for value.page.size."
-  }
-] }
+      "name": "ali-yun.oss.endpoint",
+      "type": "java.lang.String",
+      "description": "Description for ali-yun.oss.endpoint."
+    },
+    {
+      "name": "ali-yun.oss.access-key-id",
+      "type": "java.lang.String",
+      "description": "Description for ali-yun.oss.access-key-id."
+    },
+    {
+      "name": "ali-yun.oss.access-key-secret",
+      "type": "java.lang.String",
+      "description": "Description for ali-yun.oss.access-key-secret."
+    },
+    {
+      "name": "ali-yun.oss.bucket-name",
+      "type": "java.lang.String",
+      "description": "Description for ali-yun.oss.bucket-name."
+    }
+  ]
+}

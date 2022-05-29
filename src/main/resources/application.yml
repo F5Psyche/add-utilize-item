@@ -1,2 +1,12 @@
 server:
   port: 8080
+
+
+
+
+ali-yun:
+  oss:
+    endpoint: ${oss_endpoint:http://oss-cn-hangzhou-zjzwy01-d01-a.cloud-inner.zj.gov.cn/}
+    access-key-id: ${oss_access-key-id:1hD08MPW6e98yoBF}
+    access-key-secret: ${access-key-secret:wAVr22nKpCxF61WPb6AGXeHUk6VqfC}
+    bucket-name: ${oss_bucket-name:yyfjcc-oss}

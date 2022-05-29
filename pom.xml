@@ -40,6 +40,26 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-freemarker</artifactId>
         </dependency>
+
+        <!-- OSS -->
+        <dependency>
+            <groupId>com.aliyun.oss</groupId>
+            <artifactId>aliyun-sdk-oss</artifactId>
+            <version>3.10.2</version>
+        </dependency>
+
+
+
+
+
+
+
+        <!-- com.hf -->
+        <dependency>
+            <groupId>com.hf</groupId>
+            <artifactId>tools-utils-item</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
 
     <build>
