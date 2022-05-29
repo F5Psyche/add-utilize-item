@@ -27,7 +27,7 @@ import java.util.Map;
  * @date 13:56 2022/5/29
  */
 @RestController
-@RequestMapping("oss")
+@RequestMapping("/oss")
 public class OssUtilsController {
 
     private static final Logger log = LoggerFactory.getLogger(OssUtilsController.class);
@@ -44,7 +44,7 @@ public class OssUtilsController {
     @Value("${ali-yun.oss.bucket-name}")
     private String bucketName;
 
-    @GetMapping(value = "/oss/bucketInfo")
+    @GetMapping(value = "/bucketInfo")
     public Map<String, Object> ossBucketInfo() {
         long sizeTotal = 0L;
         long currentTimeMillis = System.currentTimeMillis();
