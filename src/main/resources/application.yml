@@ -1,12 +1,47 @@
+spring:
+  datasource:
+    driver-class-name: oracle.jdbc.OracleDriver
+    url: jdbc:oracle:thin:@10.85.83.92:1521/GTCSPDB
+    username: taxdb
+    password: taxdb
+    tomcat:
+      max-active: 100
+      max-wait: 360000
+      validation-query: select 1 from dual
+      validation-interval: 10000
+
+  redis:
+    host: 10.85.94.57
+    port: 6379
+    database: 2
+    password: EpsoftRedis2021
+
 server:
   port: 8080
 
+mybatis:
+  mapper-locations: classpath*:mybatis/*.xml
+  type-aliases-package: com.hf.Ac99Info
 
+
+logging:
+  config: classpath:logback-spring.xml
+
+value:
+  page:
+    size: ${value_page_size:500}
+
+elasticsearch:
+  host: 10.85.94.57
+  port: 19200
+  connTimeout: 30000
+  socketTimeout: 50000
+  connectionRequestTimeout: 5000
 
 
 ali-yun:
   oss:
-    endpoint: ${oss_endpoint:http://oss-cn-hangzhou-zjzwy01-d01-a.cloud-inner.zj.gov.cn/}
+    endpoint: ${oss_endpoint:http://oss-hf-hangzhou-zjzwy01-d01-a.cloud-inner.zj.gov.hf/}
     access-key-id: ${oss_access-key-id:1hD08MPW6e98yoBF}
     access-key-secret: ${access-key-secret:wAVr22nKpCxF61WPb6AGXeHUk6VqfC}
     bucket-name: ${oss_bucket-name:yyfjcc-oss}

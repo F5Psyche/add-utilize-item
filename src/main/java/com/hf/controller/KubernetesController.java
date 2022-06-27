@@ -1,4 +1,4 @@
-package com.cn.controller;
+package com.hf.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.hf.tools.util.CommonCustomUtils;

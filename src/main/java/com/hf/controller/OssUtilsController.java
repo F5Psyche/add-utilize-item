@@ -1,4 +1,4 @@
-package com.cn.controller;
+package com.hf.controller;
 
 import com.aliyun.oss.ClientException;
 import com.aliyun.oss.OSS;
