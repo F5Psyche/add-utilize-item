@@ -38,6 +38,7 @@ public class RedisInitialization {
         INITIALIZATION.put("CustomPageInfo", "select max(page_id) \"maxId\" from custom_page_info");
         INITIALIZATION.put("CustomTableInfo", "select max(table_id) \"maxId\" from custom_table_info");
         INITIALIZATION.put("ApiCnfInfo", "select max(id) \"maxId\" from api_cnf_info");
+        INITIALIZATION.put("ApiInsideInterfaceInfo", "select max(aii_id) \"maxId\" from api_inside_interface_info");
     }
 
     /**
