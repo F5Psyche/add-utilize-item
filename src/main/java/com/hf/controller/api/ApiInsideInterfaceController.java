@@ -58,21 +58,21 @@ public class ApiInsideInterfaceController {
     }
 
 
-    @ApiOperation("接口涉及字段")
-    @GetMapping(value = " /apiCode/column")
+//    @ApiOperation("接口涉及字段")
+//    @GetMapping(value = " /apiCode/column")
+//    public ResultVo<List<ApiValColComments>> insideInterfaceColumn() {
+//        UUID uuid = UUID.randomUUID();
+//        ResultVo<List<ApiValColComments>> resultVo = new ResultVo<>(uuid);
+//        try {
+//            List<ApiValColComments> list = apiCustomService(3L);
+//            resultVo.setResult(list);
+//            resultVo.setResultDes(GlobalCustomCodeEnum.SUCCESS.getMsg());
+//            resultVo.setCode(GlobalCustomCodeEnum.SUCCESS.getCode());
+//            resultVo.setSuccess(true);
+//        } catch (Exception e) {
+//            CommonCustomUtils.exceptionToResult(e, resultVo);
+//        }
+//        return resultVo;
+//    }
 
-    public ResultVo<List<ApiValColComments>> insideInterfaceColumn() {
-        UUID uuid = UUID.randomUUID();
-        ResultVo<List<ApiValColComments>> resultVo = new ResultVo<>(uuid);
-        try {
-            List<ApiValColComments> list = apiCustomService.apiColumnInfo(3L);
-            resultVo.setResult(list);
-            resultVo.setResultDes(GlobalCustomCodeEnum.SUCCESS.getMsg());
-            resultVo.setCode(GlobalCustomCodeEnum.SUCCESS.getCode());
-            resultVo.setSuccess(true);
-        } catch (Exception e) {
-            CommonCustomUtils.exceptionToResult(e, resultVo);
-        }
-        return resultVo;
-    }
 }

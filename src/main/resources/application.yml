@@ -37,6 +37,8 @@ elasticsearch:
   connTimeout: 30000
   socketTimeout: 50000
   connectionRequestTimeout: 5000
+  userName: elastic
+  password: m4OhCvLfnrnLh6y9ZXsx
 
 
 ali-yun:

@@ -1,9 +1,8 @@
 package com.hf.controller.custom;
 
 import com.google.common.collect.Lists;
-import com.hf.entity.po.custom.CustomFormInfo;
 import com.hf.entity.po.custom.CustomPageInfo;
-import com.hf.modules.service.CustomService;
+import com.hf.modules.service.custom.CustomService;
 import com.hf.tools.config.enums.GlobalCustomCodeEnum;
 import com.hf.tools.entity.ResultVo;
 import com.hf.tools.util.CommonCustomUtils;
@@ -14,7 +13,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -48,7 +46,6 @@ public class CustomPageController {
         }
         return resultVo;
     }
-
 
 
     @GetMapping(value = "/menu/search")
