@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: oracle.jdbc.OracleDriver
-    url: jdbc:oracle:thin:@10.85.83.92:1521/GTCSPDB
-    username: taxdb
-    password: taxdb
+    url: jdbc:oracle:thin:@192.168.207.191:1521/orcl
+    username: ddm
+    password: ddm
     tomcat:
       max-active: 100
       max-wait: 360000
@@ -11,10 +11,10 @@ spring:
       validation-interval: 10000
 
   redis:
-    host: 10.85.94.57
+    host: 192.168.206.203
     port: 6379
     database: 2
-    password: EpsoftRedis2021
+    password: EpsoftRedis2022
 
 server:
   port: 8080

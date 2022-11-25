@@ -33,6 +33,7 @@ public class RedisInitialization {
 
     static {
         INITIALIZATION = new HashMap<>(16);
+
         INITIALIZATION.put("CustomApplicationInfo", "select max(app_id) \"maxId\" from custom_application_info");
         INITIALIZATION.put("CustomFormInfo", "select max(form_id) \"maxId\" from custom_form_info");
         INITIALIZATION.put("CustomPageInfo", "select max(page_id) \"maxId\" from custom_page_info");
