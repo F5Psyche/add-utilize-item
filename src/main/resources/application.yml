@@ -9,7 +9,6 @@ spring:
       max-wait: 360000
       validation-query: select 1 from dual
       validation-interval: 10000
-
   redis:
     host: 192.168.206.203
     port: 6379
@@ -47,3 +46,17 @@ ali-yun:
     access-key-id: ${oss_access-key-id:1hD08MPW6e98yoBF}
     access-key-secret: ${access-key-secret:wAVr22nKpCxF61WPb6AGXeHUk6VqfC}
     bucket-name: ${oss_bucket-name:yyfjcc-oss}
+
+## 过滤器、拦截器需要的配置信息
+exclude:
+  webMvcPatterns:
+    - /user/login/**
+    - /swagger-resources/**
+    - /swagger-ui.html
+    - /webjars/**
+    - /js/**
+  webMvcDomainHosts:
+    - localhost
+  csrfDomainHosts:
+    - localhost
+    - 127.0.0.1

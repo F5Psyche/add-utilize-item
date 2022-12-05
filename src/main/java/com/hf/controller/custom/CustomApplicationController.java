@@ -8,16 +8,19 @@ import com.hf.modules.service.custom.CustomService;
 import com.hf.tools.config.enums.GlobalCustomCodeEnum;
 import com.hf.tools.entity.ResultVo;
 import com.hf.tools.util.CommonCustomUtils;
-import com.hf.tools.util.data.RedisCustomUtils;
 import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.UUID;
+
+import static com.hf.tools.config.filter.CsrfDefenseFilter.UUID_KEY;
 
 /**
  * @author zhanghf/f5psyche@163.com
@@ -36,12 +39,13 @@ public class CustomApplicationController {
 
 
     @PostMapping(value = "/operate")
-    public ResultVo<List<Object>> applicationOperate(@RequestBody CustomApplicationInfo customApplicationInfo) {
-        UUID uuid = UUID.randomUUID();
+    public ResultVo<List<Object>> applicationOperate(HttpServletRequest request,
+                                                     @RequestBody CustomApplicationInfo customApplicationInfo) {
+        Object uuid = request.getAttribute(UUID_KEY).toString();
         ResultVo<List<Object>> resultVo = new ResultVo<>(uuid);
         try {
-            Long id = customService.customApplicationOperate(uuid, customApplicationInfo);
-            resultVo.setResult(Lists.newArrayList(id));
+            customService.customApplicationOperate(customApplicationInfo);
+            resultVo.setResult(Lists.newArrayList(customApplicationInfo.getAppId()));
             resultVo.setResultDes(GlobalCustomCodeEnum.SUCCESS.getMsg());
             resultVo.setCode(GlobalCustomCodeEnum.SUCCESS.getCode());
             resultVo.setSuccess(true);
@@ -54,7 +58,7 @@ public class CustomApplicationController {
     @PostMapping(value = "/search")
     public ResultVo<List<CustomApplicationInfo>> applicationSearch(HttpServletRequest request,
                                                                    @RequestBody CustomSearchVo vo) {
-        UUID uuid = UUID.randomUUID();
+        Object uuid = request.getAttribute(UUID_KEY).toString();
         ResultVo<List<CustomApplicationInfo>> resultVo = new ResultVo<>(uuid);
         try {
             log.info("uuid={}, vo={}", uuid, JSON.toJSON(vo));
@@ -63,13 +67,5 @@ public class CustomApplicationController {
             CommonCustomUtils.exceptionToResult(e, resultVo);
         }
         return resultVo;
-    }
-
-    @Resource
-    RedisCustomUtils redisCustomUtils;
-
-    @GetMapping(value = "/test")
-    public void appTest() {
-        log.info("value={}", redisCustomUtils.tableIdAutoInc("", "CustomApplicationInfo"));
     }
 }

@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.UUID;
+
+import static com.hf.tools.config.filter.CsrfDefenseFilter.UUID_KEY;
 
 /**
  * @author zhanghf/f5psyche@163.com
@@ -35,11 +37,12 @@ public class ApiInsideInterfaceController {
 
     @ApiOperation("接口查询")
     @GetMapping(value = "/menu/search")
-    public ResultVo<List<Object>> insideInterfaceMenuSearch(@ApiParam(value = "接口类型（1.保存；2.删除；3.修改；4.查询）") @RequestParam(value = "apiType") String apiType) {
-        UUID uuid = UUID.randomUUID();
+    public ResultVo<List<Object>> insideInterfaceMenuSearch(HttpServletRequest request,
+                                                            @ApiParam(value = "接口类型（1.保存；2.删除；3.修改；4.查询）") @RequestParam(value = "apiType") String apiType) {
+        Object uuid = request.getAttribute(UUID_KEY).toString();
         ResultVo<List<Object>> resultVo = new ResultVo<>(uuid);
         try {
-            List<Object> list = apiCustomService.apiInsideInterfaceTreeSearch(apiType);
+            List<Object> list = apiCustomService.apiInsideInterfaceTreeSearch(uuid, apiType);
             resultVo.setResult(list);
             resultVo.setResultDes(GlobalCustomCodeEnum.SUCCESS.getMsg());
             resultVo.setCode(GlobalCustomCodeEnum.SUCCESS.getCode());

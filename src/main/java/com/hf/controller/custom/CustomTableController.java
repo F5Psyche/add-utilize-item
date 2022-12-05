@@ -13,8 +13,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.UUID;
+
+import static com.hf.tools.config.filter.CsrfDefenseFilter.UUID_KEY;
 
 /**
  * @author zhanghf/f5psyche@163.com
@@ -32,12 +34,13 @@ public class CustomTableController {
     CustomService customService;
 
     @PostMapping(value = "/operate")
-    public ResultVo<List<Object>> tableOperate(@RequestBody CustomTableInfo customTableInfo) {
-        UUID uuid = UUID.randomUUID();
+    public ResultVo<List<Object>> tableOperate(HttpServletRequest request,
+                                               @RequestBody CustomTableInfo customTableInfo) {
+        Object uuid = request.getAttribute(UUID_KEY).toString();
         ResultVo<List<Object>> resultVo = new ResultVo<>(uuid);
         try {
-            Long id = customService.customTableOperate(uuid, customTableInfo);
-            resultVo.setResult(Lists.newArrayList(id));
+            customService.customTableOperate(customTableInfo);
+            resultVo.setResult(Lists.newArrayList(customTableInfo.getTableId()));
             resultVo.setResultDes(GlobalCustomCodeEnum.SUCCESS.getMsg());
             resultVo.setCode(GlobalCustomCodeEnum.SUCCESS.getCode());
             resultVo.setSuccess(true);
@@ -48,11 +51,12 @@ public class CustomTableController {
     }
 
     @GetMapping(value = "/menu/search")
-    public ResultVo<List<Object>> tableMenuSearch(@ApiParam(value = "应用ID") @RequestParam(value = "appId") Long appId) {
-        UUID uuid = UUID.randomUUID();
+    public ResultVo<List<Object>> tableMenuSearch(HttpServletRequest request,
+                                                  @ApiParam(value = "应用ID") @RequestParam(value = "appId") String appId) {
+        Object uuid = request.getAttribute(UUID_KEY).toString();
         ResultVo<List<Object>> resultVo = new ResultVo<>(uuid);
         try {
-            List<Object> list = customService.customTableTreeSearch(appId);
+            List<Object> list = customService.customTableTreeSearch(uuid, appId);
             resultVo.setResult(list);
             resultVo.setResultDes(GlobalCustomCodeEnum.SUCCESS.getMsg());
             resultVo.setCode(GlobalCustomCodeEnum.SUCCESS.getCode());

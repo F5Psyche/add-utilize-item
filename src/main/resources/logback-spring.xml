@@ -98,14 +98,14 @@
     </root>
 
     <!-- 指定类的log日志输入到指定文件中 -->
-    <appender name="time_out_file" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${log.path}/time_out_file.log</file>
+    <appender name="api_consume_file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/api_consume_file.log</file>
         <encoder>
             <pattern>%date [%level] [%thread] %logger{80} [%file : %line] %msg%n</pattern>
             <charset>UTF-8</charset>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${log.path}/time_out_file.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <fileNamePattern>${log.path}/api_consume_file.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>5MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
@@ -113,8 +113,8 @@
             <maxHistory>30</maxHistory>
         </rollingPolicy>
     </appender>
-    <logger name="com.cn.filter.InterfaceTimeConsumeFilter" level="info" additivity="true">
-        <appender-ref ref="time_out_file"/>
+    <logger name="com.hf.tools.config.filter.CsrfDefenseFilter" level="info" additivity="true">
+        <appender-ref ref="api_consume_file"/>
     </logger>
 
 </configuration>

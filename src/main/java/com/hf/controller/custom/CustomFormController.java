@@ -14,8 +14,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.UUID;
+
+import static com.hf.tools.config.filter.CsrfDefenseFilter.UUID_KEY;
 
 /**
  * @author zhanghf/f5psyche@163.com
@@ -33,12 +35,12 @@ public class CustomFormController {
     CustomService customService;
 
     @PostMapping(value = "/operate")
-    public ResultVo<List<Object>> formOperate(@RequestBody CustomFormInfo customFormInfo) {
-        UUID uuid = UUID.randomUUID();
+    public ResultVo<List<Object>> formOperate(HttpServletRequest request, @RequestBody CustomFormInfo customFormInfo) {
+        Object uuid = request.getAttribute(UUID_KEY).toString();
         ResultVo<List<Object>> resultVo = new ResultVo<>(uuid);
         try {
-            Long id = customService.customFormOperate(uuid, customFormInfo);
-            resultVo.setResult(Lists.newArrayList(id));
+            customService.customFormOperate(customFormInfo);
+            resultVo.setResult(Lists.newArrayList(customFormInfo.getFormId()));
             resultVo.setResultDes(GlobalCustomCodeEnum.SUCCESS.getMsg());
             resultVo.setCode(GlobalCustomCodeEnum.SUCCESS.getCode());
             resultVo.setSuccess(true);
@@ -49,11 +51,12 @@ public class CustomFormController {
     }
 
     @GetMapping(value = "/menu/search")
-    public ResultVo<List<Object>> formMenuSearch(@ApiParam(value = "应用ID") @RequestParam(value = "appId") Long appId) {
-        UUID uuid = UUID.randomUUID();
+    public ResultVo<List<Object>> formMenuSearch(HttpServletRequest request,
+                                                 @ApiParam(value = "应用ID") @RequestParam(value = "appId") String appId) {
+        Object uuid = request.getAttribute(UUID_KEY).toString();
         ResultVo<List<Object>> resultVo = new ResultVo<>(uuid);
         try {
-            List<Object> list = customService.customFormTreeSearch(appId);
+            List<Object> list = customService.customFormTreeSearch(uuid, appId);
             resultVo.setResult(list);
             resultVo.setResultDes(GlobalCustomCodeEnum.SUCCESS.getMsg());
             resultVo.setCode(GlobalCustomCodeEnum.SUCCESS.getCode());
@@ -66,9 +69,10 @@ public class CustomFormController {
 
     @ApiOperation("表单/页面/表格详情查询")
     @GetMapping(value = "/detail/search")
-    public ResultVo<Object> formDetailSearch(@ApiParam(value = "主键ID") @RequestParam(value = "id") Long id,
-                                             @ApiParam(value = "类型（1.表单；2.页面；3.表格）") @RequestParam(value = "searchType") Integer searchType) {
-        UUID uuid = UUID.randomUUID();
+    public ResultVo<Object> formDetailSearch(HttpServletRequest request,
+                                             @ApiParam(value = "主键ID") @RequestParam(value = "id") String id,
+                                             @ApiParam(value = "类型（1.表单；2.页面；3.表格）", example = "1") @RequestParam(value = "searchType") Integer searchType) {
+        Object uuid = request.getAttribute(UUID_KEY).toString();
         ResultVo<Object> resultVo = new ResultVo<>(uuid);
         try {
             if (searchType == 1) {

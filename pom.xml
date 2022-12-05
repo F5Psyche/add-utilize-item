@@ -26,6 +26,13 @@
     </parent>
 
     <dependencies>
+        <!-- yml自定义属性 否则会报警告 且无法在 tools 项目中做通用加载 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+
         <!-- OSS -->
         <dependency>
             <groupId>com.aliyun.oss</groupId>
@@ -36,12 +43,6 @@
         <!-- com.hf -->
         <dependency>
             <groupId>com.hf</groupId>
-            <artifactId>tools-utils-item</artifactId>
-            <version>1.0.1</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.hf</groupId>
             <artifactId>value-database-item</artifactId>
             <version>1.0</version>
         </dependency>
@@ -49,6 +50,12 @@
         <dependency>
             <groupId>com.hf</groupId>
             <artifactId>es-engine-item</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.hf</groupId>
+            <artifactId>login-auth-item</artifactId>
             <version>1.0</version>
         </dependency>
 

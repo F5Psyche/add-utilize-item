@@ -19,6 +19,61 @@
       "name": "ali-yun.oss.bucket-name",
       "type": "java.lang.String",
       "description": "Description for ali-yun.oss.bucket-name."
+    },
+    {
+      "name": "elasticsearch.host",
+      "type": "java.lang.String",
+      "description": "Description for elasticsearch.host."
+    },
+    {
+      "name": "elasticsearch.port",
+      "type": "java.lang.String",
+      "description": "Description for elasticsearch.port."
+    },
+    {
+      "name": "value.page.size",
+      "type": "java.lang.Integer",
+      "description": "Description for value.page.size."
+    },
+    {
+      "name": "elasticsearch.connTimeout",
+      "type": "java.lang.String",
+      "description": "Description for elasticsearch.connTimeout."
+    },
+    {
+      "name": "elasticsearch.socketTimeout",
+      "type": "java.lang.String",
+      "description": "Description for elasticsearch.socketTimeout."
+    },
+    {
+      "name": "elasticsearch.connectionRequestTimeout",
+      "type": "java.lang.String",
+      "description": "Description for elasticsearch.connectionRequestTimeout."
+    },
+    {
+      "name": "elasticsearch.userName",
+      "type": "java.lang.String",
+      "description": "Description for elasticsearch.userName."
+    },
+    {
+      "name": "exclude.webMvcPatterns",
+      "type": "java.lang.String",
+      "description": "Description for exclude.webMvcPatterns."
+    },
+    {
+      "name": "elasticsearch.password",
+      "type": "java.lang.String",
+      "description": "Description for elasticsearch.password."
+    },
+    {
+      "name": "exclude.csrfDomainHosts",
+      "type": "java.lang.String",
+      "description": "Description for exclude.csrfDomainHosts."
+    },
+    {
+      "name": "exclude.webMvcDomainHosts",
+      "type": "java.lang.String",
+      "description": "Description for exclude.webMvcDomainHosts."
     }
   ]
 }
