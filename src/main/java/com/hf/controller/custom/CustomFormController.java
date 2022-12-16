@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import com.hf.entity.po.custom.CustomFormInfo;
 import com.hf.modules.service.custom.CustomService;
 import com.hf.tools.config.enums.GlobalCustomCodeEnum;
+import com.hf.tools.config.enums.value.MagicalValueEnum;
 import com.hf.tools.entity.ResultVo;
 import com.hf.tools.util.CommonCustomUtils;
 import io.swagger.annotations.Api;
@@ -57,10 +58,7 @@ public class CustomFormController {
         ResultVo<List<Object>> resultVo = new ResultVo<>(uuid);
         try {
             List<Object> list = customService.customFormTreeSearch(uuid, appId);
-            resultVo.setResult(list);
-            resultVo.setResultDes(GlobalCustomCodeEnum.SUCCESS.getMsg());
-            resultVo.setCode(GlobalCustomCodeEnum.SUCCESS.getCode());
-            resultVo.setSuccess(true);
+            GlobalCustomCodeEnum.isSuccessResult(resultVo, list);
         } catch (Exception e) {
             CommonCustomUtils.exceptionToResult(e, resultVo);
         }
@@ -75,11 +73,11 @@ public class CustomFormController {
         Object uuid = request.getAttribute(UUID_KEY).toString();
         ResultVo<Object> resultVo = new ResultVo<>(uuid);
         try {
-            if (searchType == 1) {
+            if (MagicalValueEnum.ONE.intValue().equals(searchType)) {
                 resultVo.setResult(customService.customFormSearch(id));
-            } else if (searchType == 2) {
+            } else if (MagicalValueEnum.TWO.intValue().equals(searchType)) {
                 resultVo.setResult(customService.customPageSearch(id));
-            } else if (searchType == 3) {
+            } else if (MagicalValueEnum.THREE.intValue().equals(searchType)) {
                 resultVo.setResult(customService.customTableSearch(id));
             }
             resultVo.setResultDes(GlobalCustomCodeEnum.SUCCESS.getMsg());

@@ -74,6 +74,11 @@
       "name": "exclude.webMvcDomainHosts",
       "type": "java.lang.String",
       "description": "Description for exclude.webMvcDomainHosts."
+    },
+    {
+      "name": "exclude.csrfPatternsApi",
+      "type": "java.lang.String",
+      "description": "Description for exclude.csrfPatternsApi."
     }
   ]
 }

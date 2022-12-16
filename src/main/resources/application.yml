@@ -1,22 +1,16 @@
 spring:
   datasource:
     driver-class-name: oracle.jdbc.OracleDriver
-    url: jdbc:oracle:thin:@192.168.207.191:1521/orcl
-    username: ddm
-    password: ddm
     tomcat:
       max-active: 100
       max-wait: 360000
       validation-query: select 1 from dual
       validation-interval: 10000
-  redis:
-    host: 192.168.206.203
-    port: 6379
-    database: 2
-    password: EpsoftRedis2022
+  profiles:
+    active: ${spring_profile_active:local}
 
 server:
-  port: 8080
+  port: 18080
 
 mybatis:
   mapper-locations: classpath*:mybatis/*.xml
@@ -60,3 +54,6 @@ exclude:
   csrfDomainHosts:
     - localhost
     - 127.0.0.1
+    - 183.129.231.110
+  csrfPatternsApi:
+    - /swagger-ui.html

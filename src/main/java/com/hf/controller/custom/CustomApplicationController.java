@@ -1,6 +1,5 @@
 package com.hf.controller.custom;
 
-import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
 import com.hf.entity.po.custom.CustomApplicationInfo;
 import com.hf.entity.vo.custom.CustomSearchVo;
@@ -8,6 +7,7 @@ import com.hf.modules.service.custom.CustomService;
 import com.hf.tools.config.enums.GlobalCustomCodeEnum;
 import com.hf.tools.entity.ResultVo;
 import com.hf.tools.util.CommonCustomUtils;
+import com.hf.tools.util.JackJsonUtils;
 import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -61,7 +61,8 @@ public class CustomApplicationController {
         Object uuid = request.getAttribute(UUID_KEY).toString();
         ResultVo<List<CustomApplicationInfo>> resultVo = new ResultVo<>(uuid);
         try {
-            log.info("uuid={}, vo={}", uuid, JSON.toJSON(vo));
+            String voData = JackJsonUtils.writeValueAsString(uuid, vo);
+            log.info("uuid={}, vo={}", uuid, voData);
             resultVo = customService.customApplicationSearch(uuid, vo);
         } catch (Exception e) {
             CommonCustomUtils.exceptionToResult(e, resultVo);

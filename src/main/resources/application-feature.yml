@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:oracle:thin:@192.168.207.191:1521/orcl
+    username: ddm
+    password: ddm
+  redis:
+    host: 192.168.206.203
+    port: 6379
+    database: 2
+    password: EpsoftRedis2022
