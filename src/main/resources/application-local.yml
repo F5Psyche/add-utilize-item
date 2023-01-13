@@ -1,9 +1,9 @@
 spring:
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://183.129.231.110:62312/lsxxzj?useUnicode=true&useSSL=false&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&serverTimezone=GMT
-    username: taxdb
-    password: taxdb
+    driver-class-name: oracle.jdbc.OracleDriver
+    url: jdbc:oracle:thin:@192.168.207.191:1521/orcl
+    username: ddm
+    password: ddm
   redis:
     host: 10.85.94.57
     port: 6379

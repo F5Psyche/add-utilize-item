@@ -63,7 +63,7 @@ public class CustomApplicationController {
         try {
             String voData = JackJsonUtils.writeValueAsString(uuid, vo);
             log.info("uuid={}, vo={}", uuid, voData);
-            resultVo = customService.customApplicationSearch(uuid, vo);
+            return customService.customApplicationSearch(uuid, vo);
         } catch (Exception e) {
             CommonCustomUtils.exceptionToResult(e, resultVo);
         }
