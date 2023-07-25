@@ -3,7 +3,7 @@ package com.hf.controller.api;
 import com.google.common.collect.Lists;
 import com.hf.entity.vo.CustomAopSourceVo;
 import com.hf.modules.service.value.ValueSearchService;
-import com.hf.tools.config.enums.GlobalCustomCodeEnum;
+import com.hf.tools.config.enums.custom.GlobalCustomCodeEnum;
 import com.hf.tools.entity.ResultVo;
 import com.hf.tools.util.CommonCustomUtils;
 import com.hf.tools.util.data.StructureCustomUtils;
@@ -71,7 +71,7 @@ public class ApiColumnController {
             vo.setObjectMap(objectMap);
             List<Map<String, Object>> list = valueSearchService.customSearch(vo, "select * from aa26_cb", null, null).getResult();
             long step1 = System.currentTimeMillis();
-            List<Object> obs = StructureCustomUtils.dataToDataNode(uuid, list, "AAB301", "AAA148", "children");
+            List<Object> obs = StructureCustomUtils.dataToDataNode(list, "AAB301", "AAA148", "children");
             long step2 = System.currentTimeMillis();
             log.info("cus={}", step2 - step1);
             GlobalCustomCodeEnum.isSuccessResult(resultVo, obs);

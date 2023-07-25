@@ -47,16 +47,11 @@
             <version>1.0</version>
         </dependency>
 
+        <!-- 添加 XJar 依赖 -->
         <dependency>
-            <groupId>com.hf</groupId>
-            <artifactId>es-engine-item</artifactId>
-            <version>1.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.hf</groupId>
-            <artifactId>login-auth-item</artifactId>
-            <version>1.0</version>
+            <groupId>com.github.core-lib</groupId>
+            <artifactId>xjar</artifactId>
+            <version>4.0.2</version>
         </dependency>
 
     </dependencies>

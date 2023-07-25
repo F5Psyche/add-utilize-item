@@ -36,5 +36,5 @@ ADD target/add-utilize-item-1.0.jar add-utilize-item.jar
 #启动容器时的进程
 ENTRYPOINT ["java","-jar","/add-utilize-item.jar"]
 
-#暴露8080端口
-EXPOSE 8080
+#暴露18080端口
+EXPOSE 18080

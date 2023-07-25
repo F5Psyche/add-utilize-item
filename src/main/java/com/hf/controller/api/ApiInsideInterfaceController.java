@@ -1,7 +1,7 @@
 package com.hf.controller.api;
 
 import com.hf.modules.service.api.ApiCustomService;
-import com.hf.tools.config.enums.GlobalCustomCodeEnum;
+import com.hf.tools.config.enums.custom.GlobalCustomCodeEnum;
 import com.hf.tools.entity.ResultVo;
 import com.hf.tools.util.CommonCustomUtils;
 import io.swagger.annotations.Api;
@@ -42,7 +42,7 @@ public class ApiInsideInterfaceController {
         Object uuid = request.getAttribute(UUID_KEY).toString();
         ResultVo<List<Object>> resultVo = new ResultVo<>(uuid);
         try {
-            List<Object> list = apiCustomService.apiInsideInterfaceTreeSearch(uuid, apiType);
+            List<Object> list = apiCustomService.apiInsideInterfaceTreeSearch(apiType);
             resultVo.setResult(list);
             resultVo.setResultDes(GlobalCustomCodeEnum.SUCCESS.getMsg());
             resultVo.setCode(GlobalCustomCodeEnum.SUCCESS.getCode());

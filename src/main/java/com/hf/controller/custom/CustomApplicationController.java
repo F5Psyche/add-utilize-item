@@ -4,11 +4,12 @@ import com.google.common.collect.Lists;
 import com.hf.entity.po.custom.CustomApplicationInfo;
 import com.hf.entity.vo.custom.CustomSearchVo;
 import com.hf.modules.service.custom.CustomService;
-import com.hf.tools.config.enums.GlobalCustomCodeEnum;
+import com.hf.tools.config.enums.custom.GlobalCustomCodeEnum;
 import com.hf.tools.entity.ResultVo;
 import com.hf.tools.util.CommonCustomUtils;
 import com.hf.tools.util.JackJsonUtils;
 import io.swagger.annotations.Api;
+import org.apache.logging.log4j.ThreadContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 import static com.hf.tools.config.filter.CsrfDefenseFilter.UUID_KEY;
@@ -39,9 +39,8 @@ public class CustomApplicationController {
 
 
     @PostMapping(value = "/operate")
-    public ResultVo<List<Object>> applicationOperate(HttpServletRequest request,
-                                                     @RequestBody CustomApplicationInfo customApplicationInfo) {
-        Object uuid = request.getAttribute(UUID_KEY).toString();
+    public ResultVo<List<Object>> applicationOperate(@RequestBody CustomApplicationInfo customApplicationInfo) {
+        Object uuid = ThreadContext.get(UUID_KEY);
         ResultVo<List<Object>> resultVo = new ResultVo<>(uuid);
         try {
             customService.customApplicationOperate(customApplicationInfo);
@@ -56,14 +55,13 @@ public class CustomApplicationController {
     }
 
     @PostMapping(value = "/search")
-    public ResultVo<List<CustomApplicationInfo>> applicationSearch(HttpServletRequest request,
-                                                                   @RequestBody CustomSearchVo vo) {
-        Object uuid = request.getAttribute(UUID_KEY).toString();
+    public ResultVo<List<CustomApplicationInfo>> applicationSearch(@RequestBody CustomSearchVo<Object> vo) {
+        Object uuid = ThreadContext.get(UUID_KEY);
         ResultVo<List<CustomApplicationInfo>> resultVo = new ResultVo<>(uuid);
         try {
-            String voData = JackJsonUtils.writeValueAsString(uuid, vo);
+            String voData = JackJsonUtils.writeValueAsString(vo);
             log.info("uuid={}, vo={}", uuid, voData);
-            return customService.customApplicationSearch(uuid, vo);
+            return customService.customApplicationSearch(vo);
         } catch (Exception e) {
             CommonCustomUtils.exceptionToResult(e, resultVo);
         }

@@ -7,4 +7,4 @@ spring:
     host: 192.168.206.203
     port: 6379
     database: 2
-    password: EpsoftRedis2022
+    password: Epsoft@2023

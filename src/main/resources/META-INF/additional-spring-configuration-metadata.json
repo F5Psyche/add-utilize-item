@@ -79,6 +79,26 @@
       "name": "exclude.csrfPatternsApi",
       "type": "java.lang.String",
       "description": "Description for exclude.csrfPatternsApi."
+    },
+    {
+      "name": "graph.nebula.hosts",
+      "type": "java.lang.String",
+      "description": "Description for graph.nebula.hosts."
+    },
+    {
+      "name": "graph.nebula.max-conn",
+      "type": "java.lang.String",
+      "description": "Description for graph.nebula.max-conn."
+    },
+    {
+      "name": "graph.nebula.username",
+      "type": "java.lang.String",
+      "description": "Description for graph.nebula.username."
+    },
+    {
+      "name": "graph.nebula.password",
+      "type": "java.lang.String",
+      "description": "Description for graph.nebula.password."
     }
   ]
 }

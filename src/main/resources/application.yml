@@ -16,7 +16,6 @@ mybatis:
   mapper-locations: classpath*:mybatis/*.xml
   type-aliases-package: com.hf.Ac99Info
 
-
 logging:
   config: classpath:logback-spring.xml
 
@@ -55,5 +54,14 @@ exclude:
     - localhost
     - 127.0.0.1
     - 183.129.231.110
+    - 192.168.206.203
   csrfPatternsApi:
     - /swagger-ui.html
+
+
+graph:
+  nebula:
+    hosts: 10.85.158.128:8008
+    max-conn: 1000
+    username: root
+    password: nebula
